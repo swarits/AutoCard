@@ -1,5 +1,5 @@
 mat-card {
-    width: 25%;
+    width: 330px;
     margin: 0 auto;
 }
 
@@ -13,4 +13,8 @@ mat-card-content, mat-card-actions {
 
 mat-form-field {
     width: 100%;
+}
+
+:host >>> .mat-checkbox-label {
+    white-space: initial;
 }
