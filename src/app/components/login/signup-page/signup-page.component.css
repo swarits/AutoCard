@@ -1,0 +1,16 @@
+mat-card {
+    width: 25%;
+    margin: 0 auto;
+}
+
+mat-card-header {
+    justify-content: center;
+}
+
+mat-card-content, mat-card-actions {
+    padding: 0 21px;
+}
+
+mat-form-field {
+    width: 100%;
+}

@@ -1,0 +1,7 @@
+.fill-space {
+    flex: auto 1  1;
+}
+
+mat-icon {
+    vertical-align: middle;
+}
