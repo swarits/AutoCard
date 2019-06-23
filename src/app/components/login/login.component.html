@@ -1,2 +1,3 @@
-<app-loginnav></app-loginnav>
-<app-signup-page></app-signup-page>
+<app-loginnav (userLoginEvent)="userLogin=!userLogin"></app-loginnav>
+<app-signup-page *ngIf="userLogin==false"></app-signup-page>
+<app-login-page *ngIf="userLogin==true"></app-login-page>

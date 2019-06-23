@@ -1,6 +1,7 @@
 mat-card {
     width: 330px;
     margin: 0 auto;
+    padding: 30px 16px;
 }
 
 mat-card-header {

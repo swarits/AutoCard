@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-loginnav',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginnavComponent implements OnInit {
 
+  @Output() userLoginEvent = new EventEmitter<boolean>();
+
+  userlogin = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  login(){
+    this.userLoginEvent.emit(true);
+    this.userlogin = !this.userlogin;
   }
 
 }

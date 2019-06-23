@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupPageComponent implements OnInit {
 
+  hide=true;
+  hide2=true;
   constructor() { }
 
   ngOnInit() {
