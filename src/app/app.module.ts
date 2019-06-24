@@ -12,6 +12,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -23,6 +27,8 @@ import { PassbookComponent } from './components/passbook/passbook.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { ManageCardsComponent } from './components/manage-cards/manage-cards.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { CardDialogComponent } from './components/manage-cards/card-dialog/card-dialog.component';
+import { NewCardDialogComponent } from './components/manage-cards/new-card-dialog/new-card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     TopNavComponent,
     ManageCardsComponent,
     NotificationsComponent,
+    CardDialogComponent,
+    NewCardDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,9 +56,17 @@ import { NotificationsComponent } from './components/notifications/notifications
     MatInputModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+
+    MatDialogModule,
+    FormsModule,
+    MatSelectModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CardDialogComponent,
+    NewCardDialogComponent
+]
 })
 export class AppModule { }

@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Add New Card</h2>
+
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Card Number*" [(ngModel)]="cardNumber">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Name On Card*" [(ngModel)]="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Card Type*</mat-label>
+    <mat-select [(value)]="cardType">
+      <mat-option value="Debit Card">Debit Card</mat-option>
+      <mat-option value="Credit Card">Credit Card</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Expiry Date*" [(ngModel)]="expiryDate">
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close >Cancel</button>
+  <button mat-raised-button color="primary" (click)="addCard()">Add Card</button>
+</mat-dialog-actions>

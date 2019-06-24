@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Edit/Remove Card</h2>
+
+<div class="card-number">
+  <div>
+    <span style="float: left;">Card Number</span>
+    <span style="float: right;">
+      <button mat-icon-button matSuffix [attr.aria-label]="'Delete Card'">
+        <mat-icon style="color: red;">delete_forever</mat-icon>
+      </button>
+    </span>
+  </div>
+  <br>
+  <div style="font-weight: bold;">
+    {{cardData.cardNo}}
+  </div>
+</div>
+
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Name On Card" [(ngModel)]="cardData.name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Card Type</mat-label>
+    <mat-select [(value)]="cardData.cardType">
+      <mat-option value="Debit Card">Debit Card</mat-option>
+      <mat-option value="Credit Card">Credit Card</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Expiry Date" [(ngModel)]="cardData.expiryDate">
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close color="green">Cancel</button>
+  <button mat-raised-button color="primary">Save Changes</button>
+</mat-dialog-actions>

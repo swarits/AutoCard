@@ -1,4 +1,65 @@
 <app-top-nav></app-top-nav>
-<p>
-  manage-cards works!
-</p>
+<div class="container">
+  <div class="container-header mat-elevation-z1">
+    <h2>Cards Linked to Account</h2>
+  </div>
+
+  <div class="container-body">
+
+    <mat-card>
+      <mat-card-header>
+        <div style="width: 100%;">
+          <span style="float: left;margin-top: 5%; font-weight: bolder;">
+            CARD DETAILS
+          </span>
+          <span style="float: right;">
+            <button mat-icon-button aria-label="Edit/Remove Card" (click)="editCard(carddata)"
+              style="background: #104E8B;width: 30px; height: 30px;" class="mat-elevation-z2">
+              <mat-icon style="vertical-align: unset;color: white; font-size: 20px;">edit</mat-icon>
+            </button>
+          </span>
+        </div>
+      </mat-card-header>
+
+      <div class="divider"></div>
+
+      <mat-card-content>
+        <div class="card-field">
+          <div class="card-field-name">Card Number</div>
+          <div class="card-field-value" style="font-weight: bold;">1234 6544 6546 4564</div>
+        </div>
+
+        <div class="card-field">
+          <div class="card-field-name">Name On Card</div>
+          <div class="card-field-value">Swarit Sharma</div>
+        </div>
+
+        <div class="card-field">
+          <div class="card-field-name">
+            <span style="float: left;">Card Type</span>
+            <span style="float: right;">Expiry Date</span>
+          </div>
+          <br>
+          <div class="card-field-value">
+            <span style="float: left;">Debit Card</span>
+            <span style="float: right; font-weight: bold;">02/22</span>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-footer></mat-card-footer>
+
+    </mat-card>
+
+    <mat-card>
+      <button mat-icon-button aria-label="Add Card" (click)="addNewCard()" class="add-new-card">
+        <mat-icon style="color: black;">add_circle_outline</mat-icon>
+      </button>
+    </mat-card>
+
+
+
+  </div>
+
+</div>
