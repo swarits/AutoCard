@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="mat-elevation-z5">
+  <span>
+    <span style="font-size: x-large;font-weight: bolder;font-style: italic;">Auto</span>
+    <span>Card</span>
+  </span>
+  <span class="fill-space"></span>
+  <span>
+    <button mat-icon-button aria-label="Profile" [matMenuTriggerFor]="profileMenu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #profileMenu class="profileMenu">
+      <div class="profile-note">
+        <span>Signed in as</span><br>
+        <span><b>Swarit Sharma</b></span>
+      </div>
+
+      <!-- <hr style="color: #e1e4e8;height: 1px;"> -->
+      <div class="dropdown-divider"></div>
+
+      <a routerLink="/passbook" routerLinkActive="active" class="dropdown-item">Passbook</a>
+
+      <a routerLink="/manage-cards" routerLinkActive="active" class="dropdown-item">Manage Cards</a>
+
+      <a routerLink="/notifications" routerLinkActive="active"  class="dropdown-item">Notifications</a>
+
+      <div class="dropdown-divider"></div>
+
+      <a href="#" class="dropdown-item">Sign Out</a>
+
+    </mat-menu>
+  </span>
+</mat-toolbar>
