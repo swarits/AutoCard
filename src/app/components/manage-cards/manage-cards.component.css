@@ -1,0 +1,59 @@
+mat-card {
+    width: 220px;
+    padding: 10px 10px 1px 10px;
+    margin-right: 3%;
+}
+
+mat-card-footer {
+    margin: initial;
+}
+
+mat-card-content {
+    margin-bottom: 30px;
+}
+
+.add-new-card {
+    height: 100%;
+    width: 100%;
+}
+.container {
+    margin: 3vh;
+    height: 74vh;
+    padding: 2% 8%;
+    /* background-color: white; */
+}
+
+.container-header {
+    background-color: white;
+    padding: 10px;
+    color: darkblue;
+    border-radius: 10px;
+}
+
+.container-body {
+    /* height: 80%; */
+    padding: 15px 10px;
+    display: inline-flex;
+    width: 100%;
+}
+
+.divider {
+    border-top: 1px solid #e1e4e8;
+    display: block;
+    height: 0;
+    margin: 8px 0;
+}
+
+.card-field {
+    padding: 2% 1%;
+}
+
+.card-field-name {
+    font-family: serif;
+    font-style: italic;
+    color: #696969;
+}
+
+.card-field-value {
+
+}
