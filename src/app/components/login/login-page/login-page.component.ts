@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -7,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  hide=true;
+  hide = true;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  email_form_control = new FormControl('', [Validators.required, Validators.email]);
+  password_form_control = new FormControl('', [Validators.required]);
+
+
+  getEmailErrorMessage() {
+    return this.email_form_control.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  signIn() {
+    
   }
 
 }
