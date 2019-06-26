@@ -2,28 +2,32 @@
 
 <mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Card Number*" [(ngModel)]="cardNumber">
+    <input matInput placeholder="Card Number" [formControl]="cardNumber" required>
+    <mat-error *ngIf="cardNumber.invalid">Enter valid card no.</mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Name On Card*" [(ngModel)]="name">
+    <input matInput placeholder="Name On Card" [formControl]="name" required>
+    <mat-error *ngIf="name.invalid">Enter valid name</mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Card Type*</mat-label>
-    <mat-select [(value)]="cardType">
+    <mat-label>Card Type</mat-label>
+    <mat-select [(value)]="cardType" required>
       <mat-option value="Debit Card">Debit Card</mat-option>
       <mat-option value="Credit Card">Credit Card</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Expiry Date*" [(ngModel)]="expiryDate">
+    <input matInput placeholder="Expiry Date*" [formControl]="expiryDate">
+    <mat-error *ngIf="expiryDate.invalid">Format: 'mm/yy' </mat-error>
   </mat-form-field>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close >Cancel</button>
-  <button mat-raised-button color="primary" (click)="addCard()">Add Card</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="addCard()"
+    [disabled]="cardNumber.invalid || name.invalid || expiryDate.invalid || cardType==null">Add Card</button>
 </mat-dialog-actions>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-card-dialog',
@@ -7,18 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewCardDialogComponent implements OnInit {
 
-  public name=null;
-  public cardNumber=null;
-  public cardType=null;
-  public expiryDate=null;
+  public cardType = null;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  cardNumber = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]);
+  name = new FormControl('', [Validators.required, Validators.pattern(/^[\sA-Za-z]+$/)]);
+  expiryDate = new FormControl('', [Validators.required, Validators.pattern(/^\d{2}\/\d{2}$/)]);
+
+
   addCard() {
-    
+
   }
 
 }

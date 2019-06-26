@@ -17,7 +17,8 @@
 
 <mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Name On Card" [(ngModel)]="cardData.name">
+    <input matInput placeholder="Name On Card" [formControl]="name" [(ngModel)]="cardData.name">
+    <mat-error *ngIf="name.invalid">Enter valid name</mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -29,12 +30,13 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Expiry Date" [(ngModel)]="cardData.expiryDate">
+    <input matInput placeholder="Expiry Date" [formControl]="expiryDate" [(ngModel)]="cardData.expiryDate">
+    <mat-error *ngIf="expiryDate.invalid">Format: 'mm/yy' </mat-error>
   </mat-form-field>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button mat-dialog-close color="green">Cancel</button>
-  <button mat-raised-button color="primary">Save Changes</button>
+  <button mat-raised-button color="primary" [disabled]="name.invalid || expiryDate.invalid">Save Changes</button>
 </mat-dialog-actions>
