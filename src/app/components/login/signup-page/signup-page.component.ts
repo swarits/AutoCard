@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormGroupDirective, NgForm, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { UserService } from 'src/app/services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-signup-page',
@@ -12,13 +15,9 @@ export class SignupPageComponent implements OnInit {
   hide = true;
   hide2 = true;
 
-  public firstname=null;
-  public lastname=null;
-  public email = null;
-  public user_password=null;
-  public uer_user_matching_password=null;
+  public lastname = null;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -27,7 +26,7 @@ export class SignupPageComponent implements OnInit {
   email_form_control = new FormControl('', [Validators.required, Validators.email]);
   firstname_form_control = new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]);
 
-  checkTns=false;
+  checkTns = false;
 
   matcher = new MyErrorStateMatcher();
 
@@ -41,7 +40,7 @@ export class SignupPageComponent implements OnInit {
   }
 
   getNameErrorMessage() {
-    return this.firstname_form_control.hasError('firstname') ? '': 'First name must contain only characters';
+    return this.firstname_form_control.hasError('firstname') ? '' : 'First name must contain only characters';
   }
 
   checkPasswords(group: FormGroup) {
@@ -51,8 +50,37 @@ export class SignupPageComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }
   }
 
-  signUp() {
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+
+  signUp() {
+    let signupData = {
+      "email": this.email_form_control.value,
+      "firstname": this.firstname_form_control.value,
+      "lastname": this.lastname,
+      "user_password": this.signupForm.get("password").value,
+      "user_matching_password": this.signupForm.get('confirmPassword').value
+    }
+    this.userService.signUp(signupData).subscribe(response => {
+      if(response.status == 201){
+        this.openSnackBar("You've successfully created the account.", "");
+      }else {
+        this.openSnackBar("Account Couldn't be created", " ");
+      }
+    },
+    error => {
+      if(error.status == 201){
+        this.openSnackBar("You've successfully created the account.", "");
+      }else {
+        this.openSnackBar("Account Couldn't be created", " ");
+      }
+    }
+    );
   }
 
 }

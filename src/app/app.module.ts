@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -29,6 +31,7 @@ import { ManageCardsComponent } from './components/manage-cards/manage-cards.com
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { CardDialogComponent } from './components/manage-cards/card-dialog/card-dialog.component';
 import { NewCardDialogComponent } from './components/manage-cards/new-card-dialog/new-card-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -62,13 +65,17 @@ import { NewCardDialogComponent } from './components/manage-cards/new-card-dialo
     ReactiveFormsModule,
     MatDialogModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule,
+
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     CardDialogComponent,
     NewCardDialogComponent
-]
+  ]
 })
 export class AppModule { }
