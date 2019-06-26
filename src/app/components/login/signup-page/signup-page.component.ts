@@ -3,6 +3,7 @@ import { FormControl, Validators, FormGroup, FormGroupDirective, NgForm, FormBui
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UserService } from 'src/app/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class SignupPageComponent implements OnInit {
 
   public lastname = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private snackBar: MatSnackBar, private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
 
@@ -57,8 +58,17 @@ export class SignupPageComponent implements OnInit {
     });
   }
 
+  resetSignupData() {
+    this.email_form_control.reset();
+    this.firstname_form_control.reset();
+    this.signupForm.reset();
+    this.lastname = null;
+    this.checkTns = false;
+  }
+
 
   signUp() {
+    this.spinnerService.show()
     let signupData = {
       "email": this.email_form_control.value,
       "firstname": this.firstname_form_control.value,
@@ -72,6 +82,8 @@ export class SignupPageComponent implements OnInit {
       }else {
         this.openSnackBar("Account Couldn't be created", " ");
       }
+      this.resetSignupData();
+      this.spinnerService.hide();
     },
     error => {
       if(error.status == 201){
@@ -79,6 +91,8 @@ export class SignupPageComponent implements OnInit {
       }else {
         this.openSnackBar("Account Couldn't be created", " ");
       }
+      this.resetSignupData();
+      this.spinnerService.hide();
     }
     );
   }

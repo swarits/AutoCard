@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
@@ -51,6 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
 
+    Ng4LoadingSpinnerModule.forRoot(),
+
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -68,7 +71,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     HttpClientModule,
 
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [
   ],
