@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
 
   hide = true;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -24,8 +25,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   signIn() {
-    //after success response from the backend
+    let signinData = {
+      "email": "swarit@gmail.com",
+      "password": "password"
+    }
+    this.userService.signIn(signinData)
+      .subscribe(response => { },
+        error => { });
+
     this.router.navigateByUrl('/passbook');
   }
-  
+
 }

@@ -16,4 +16,8 @@ export class UserService {
     return this.http.post<any>(this.config.host + "/user/register", userData, { observe: 'response' });
   }
 
+  signIn(userData) {
+    return this.http.post<any>(this.config.host + '/user/signin', userData);
+  }
+
 }
