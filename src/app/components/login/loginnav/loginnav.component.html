@@ -10,14 +10,13 @@
         </button>
         <mat-menu #profileMenu class="profileMenu">
             <div class="profile-note">
-                <span *ngIf="userlogin==false">Already a member?</span>
-                <span *ngIf="userlogin==true">Don't have an account?</span>
+                <span>Don't have an account?</span>
             </div>
             <hr style="color: gray;">
             <div class="sign-in">
-                <button mat-flat-button color="primary" style="float: center;" (click)="login()">
-                    <span *ngIf="userlogin==false">Sign In</span>
-                    <span *ngIf="userlogin==true">Sign Up</span>
+                <button mat-flat-button color="primary" style="float: center;"
+                    (click)="signUp()">
+                    <span>Sign Up</span>
                 </button>
             </div>
 

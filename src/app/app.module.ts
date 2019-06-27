@@ -26,7 +26,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginnavComponent } from './components/login/loginnav/loginnav.component';
-import { SignupPageComponent } from './components/login/signup-page/signup-page.component';
 import { LoginPageComponent } from './components/login/login-page/login-page.component';
 import { PassbookComponent } from './components/passbook/passbook.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
@@ -34,6 +33,8 @@ import { ManageCardsComponent } from './components/manage-cards/manage-cards.com
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { CardDialogComponent } from './components/manage-cards/card-dialog/card-dialog.component';
 import { NewCardDialogComponent } from './components/manage-cards/new-card-dialog/new-card-dialog.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { NavComponent } from './components/signup/nav/nav.component';
 
 //utility classes
 
@@ -42,14 +43,15 @@ import { NewCardDialogComponent } from './components/manage-cards/new-card-dialo
     AppComponent,
     LoginComponent,
     LoginnavComponent,
-    SignupPageComponent,
     LoginPageComponent,
     PassbookComponent,
     TopNavComponent,
     ManageCardsComponent,
     NotificationsComponent,
     CardDialogComponent,
-    NewCardDialogComponent
+    NewCardDialogComponent,
+    SignupComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

@@ -6,14 +6,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 
-
 @Component({
-  selector: 'app-signup-page',
-  templateUrl: './signup-page.component.html',
-  styleUrls: ['./signup-page.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class SignupPageComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
+  
   hide = true;
   hide2 = true;
 

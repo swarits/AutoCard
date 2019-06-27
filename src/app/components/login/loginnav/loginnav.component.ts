@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loginnav',
@@ -7,17 +8,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class LoginnavComponent implements OnInit {
 
-  @Output() userLoginEvent = new EventEmitter<boolean>();
-
-  userlogin = false;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  login(){
-    this.userLoginEvent.emit(true);
-    this.userlogin = !this.userlogin;
+  signUp(){
+    this.router.navigateByUrl('/');
   }
 
 }

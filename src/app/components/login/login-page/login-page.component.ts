@@ -5,6 +5,8 @@ import { UserService } from 'src/app/services/user.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -13,7 +15,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class LoginPageComponent implements OnInit {
 
   hide = true;
-  constructor(private router: Router, private userService: UserService, private snackbar: SnackBarService, private spinnerService: Ng4LoadingSpinnerService) { }
+  constructor(private cookieService: CookieService, private router: Router, private userService: UserService, private snackbar: SnackBarService, private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
   }
@@ -37,6 +39,7 @@ export class LoginPageComponent implements OnInit {
         if (response.status == 200) {
           this.router.navigateByUrl('/passbook');
           this.snackbar.openSnackBar("Welcome to AutoCard", "");
+          this.cookieService.set("session", "active");
         }
         this.spinnerService.hide();
       },
