@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 
+//modules
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,10 +19,11 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
+//components
+import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginnavComponent } from './components/login/loginnav/loginnav.component';
 import { SignupPageComponent } from './components/login/signup-page/signup-page.component';
@@ -32,7 +34,8 @@ import { ManageCardsComponent } from './components/manage-cards/manage-cards.com
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { CardDialogComponent } from './components/manage-cards/card-dialog/card-dialog.component';
 import { NewCardDialogComponent } from './components/manage-cards/new-card-dialog/new-card-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
+
+//utility classes
 
 @NgModule({
   declarations: [

@@ -4,6 +4,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { UserService } from 'src/app/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class SignupPageComponent implements OnInit {
 
   public lastname = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private snackBar: MatSnackBar, private spinnerService: Ng4LoadingSpinnerService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private snackBar: SnackBarService, private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
 
@@ -51,13 +52,6 @@ export class SignupPageComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }
   }
 
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
-
   resetSignupData() {
     this.email_form_control.reset();
     this.firstname_form_control.reset();
@@ -78,18 +72,18 @@ export class SignupPageComponent implements OnInit {
     }
     this.userService.signUp(signupData).subscribe(response => {
       if(response.status == 201){
-        this.openSnackBar("You've successfully created the account.", "");
+        this.snackBar.openSnackBar("Account created successfully", "");
       }else {
-        this.openSnackBar("Account Couldn't be created", " ");
+        this.snackBar.openSnackBar("Account Couldn't be created", " ");
       }
       this.resetSignupData();
       this.spinnerService.hide();
     },
     error => {
       if(error.status == 201){
-        this.openSnackBar("You've successfully created the account.", "");
+        this.snackBar.openSnackBar("Account created successfully", "");
       }else {
-        this.openSnackBar("Account Couldn't be created", " ");
+        this.snackBar.openSnackBar("Account Couldn't be created", " ");
       }
       this.resetSignupData();
       this.spinnerService.hide();

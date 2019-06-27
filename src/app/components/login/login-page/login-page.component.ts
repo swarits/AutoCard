@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-login-page',
@@ -11,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginPageComponent implements OnInit {
 
   hide = true;
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private snackbar: SnackBarService, private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
   }
@@ -25,15 +27,24 @@ export class LoginPageComponent implements OnInit {
   }
 
   signIn() {
+    this.spinnerService.show();
     let signinData = {
-      "email": "swarit@gmail.com",
-      "password": "password"
+      "email": this.email_form_control.value,
+      "password": this.password_form_control.value
     }
     this.userService.signIn(signinData)
-      .subscribe(response => { },
-        error => { });
+      .subscribe(response => {
+        if (response.status == 200) {
+          this.router.navigateByUrl('/passbook');
+          this.snackbar.openSnackBar("Welcome to AutoCard", "");
+        }
+        this.spinnerService.hide();
+      },
+        error => {
+          this.snackbar.openSnackBar("Login failed, Please try again!", "");
+          this.spinnerService.hide();
+        });
 
-    this.router.navigateByUrl('/passbook');
   }
 
 }
