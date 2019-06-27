@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -13,13 +14,13 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 })
 export class SignupComponent implements OnInit {
 
-  
+
   hide = true;
   hide2 = true;
 
   public lastname = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private snackBar: SnackBarService, private spinnerService: Ng4LoadingSpinnerService) { }
+  constructor(private router: Router, private fb: FormBuilder, private userService: UserService, private snackBar: SnackBarService, private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
 
@@ -71,23 +72,25 @@ export class SignupComponent implements OnInit {
       "user_matching_password": this.signupForm.get('confirmPassword').value
     }
     this.userService.signUp(signupData).subscribe(response => {
-      if(response.status == 201){
-        this.snackBar.openSnackBar("Account created successfully", "");
-      }else {
+      if (response.status == 201) {
+        this.snackBar.openSnackBar("Account created successfully! Sign In to continue.", "");
+        this.router.navigateByUrl('/login');
+      } else {
         this.snackBar.openSnackBar("Account Couldn't be created", " ");
       }
       this.resetSignupData();
       this.spinnerService.hide();
     },
-    error => {
-      if(error.status == 201){
-        this.snackBar.openSnackBar("Account created successfully", "");
-      }else {
-        this.snackBar.openSnackBar("Account Couldn't be created", " ");
+      error => {
+        if (error.status == 201) {
+          this.snackBar.openSnackBar("Account created successfully", "");
+          this.router.navigateByUrl('/login');
+        } else {
+          this.snackBar.openSnackBar("Account Couldn't be created", " ");
+        }
+        this.resetSignupData();
+        this.spinnerService.hide();
       }
-      this.resetSignupData();
-      this.spinnerService.hide();
-    }
     );
   }
 
