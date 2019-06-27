@@ -52,7 +52,7 @@ export class LoginPageComponent implements OnInit {
 
   setSignInData(response) {
     this.cookieService.set("session", "active");
-    window.localStorage.setItem("id", response['id']);
+    window.localStorage.setItem("userId", response['id']);
     window.localStorage.setItem("email", response['email'])
     window.localStorage.setItem("firstname", response['firstname']);
     window.localStorage.setItem("lastname", response['lastname']);

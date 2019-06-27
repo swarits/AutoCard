@@ -10,14 +10,17 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 })
 export class TopNavComponent implements OnInit {
 
+  name = null;
   constructor(private cookieService: CookieService, private router: Router, private snackBar: SnackBarService) { }
 
   ngOnInit() {
+    this.name = window.localStorage.getItem('firstname') +" " + window.localStorage.getItem('lastname');
   }
 
   signOut() {
-    //clear cookies and call api
+    //TODO: call api
     this.cookieService.delete("session");
+    window.localStorage.clear();
     this.router.navigateByUrl('/login');
     this.snackBar.openSnackBar("Successfully logged out.", "");
   }
