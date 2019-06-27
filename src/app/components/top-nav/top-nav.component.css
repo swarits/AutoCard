@@ -15,8 +15,10 @@ mat-menu {
     color: #24292e;
 }
 
-.log-out {
-    padding: 12px;
+.sign-out {
+    width: 100%;
+    border: none;
+    font-weight: bold;
 }
 
 .dropdown-divider {
@@ -39,9 +41,10 @@ a {
     text-decoration:none;
 }
 
-a:hover {
+a:hover, button:hover {
     background-color: #0366d6;
     color: #fff;
     outline: none;
     text-decoration: none;
+    cursor: pointer;
 }
