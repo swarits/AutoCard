@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'app-new-card-dialog',
@@ -12,7 +13,10 @@ export class NewCardDialogComponent implements OnInit {
 
   public cardType = null;
 
-  constructor(private accountService: AccountService, private dialogRef: MatDialogRef<NewCardDialogComponent>) { }
+  constructor(private accountService: AccountService,
+    private dialogRef: MatDialogRef<NewCardDialogComponent>,
+    private snackBar: SnackBarService
+  ) { }
 
   ngOnInit() {
   }
@@ -35,9 +39,13 @@ export class NewCardDialogComponent implements OnInit {
     }
 
     this.accountService.addAccount(details)
-      .subscribe(response => { }, error => { });
-    
-    this.closeDialog();
+      .subscribe(response => {
+        this.snackBar.openSnackBar(response.message, "");
+        this.closeDialog();
+      }, error => {
+        this.snackBar.openSnackBar(error.error.message, "");
+      });
+
   }
 
 }

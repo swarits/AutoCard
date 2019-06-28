@@ -17,11 +17,15 @@ export class AccountService {
   }
 
   getAllAccounts(userId) {
-    return this.http.get<any>(this.config.host + '/account/cards', userId);
+    return this.http.get<any>(this.config.host + `/account/cards/${userId}`);
   }
 
-  editAccount(newDetails) {
-    return this.http.post<any>(this.config.host + '/account/edit-card', newDetails);
+  editAccount(userId,cardNumber, newDetails) {
+    return this.http.put<any>(this.config.host + `/account/card/${userId}/${cardNumber}`, newDetails);
+  }
+
+  deleteAccount(userId, cardNumber) {
+    return this.http.patch<any>(this.config.host + `/account/delete/${userId}`, cardNumber);
   }
 
 }

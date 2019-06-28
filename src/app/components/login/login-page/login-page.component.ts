@@ -36,15 +36,13 @@ export class LoginPageComponent implements OnInit {
     }
     this.userService.signIn(signinData)
       .subscribe(response => {
-        if (response.status == 200) {
-          this.router.navigateByUrl('/passbook');
-          this.snackbar.openSnackBar("Welcome to AutoCard", "");
-          this.setSignInData(response.body);
-        }
+        this.setSignInData(response.body);
+        this.router.navigateByUrl('/passbook');
+        this.snackbar.openSnackBar("Welcome to AutoCard", "");
         this.spinnerService.hide();
       },
         error => {
-          this.snackbar.openSnackBar("Login failed, Please try again!", "");
+          this.snackbar.openSnackBar(error.error.message, "");
           this.spinnerService.hide();
         });
 

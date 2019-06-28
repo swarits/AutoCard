@@ -72,22 +72,13 @@ export class SignupComponent implements OnInit {
       "user_matching_password": this.signupForm.get('confirmPassword').value
     }
     this.userService.signUp(signupData).subscribe(response => {
-      if (response.status == 201) {
-        this.snackBar.openSnackBar("Account created successfully! Sign In to continue.", "");
-        this.router.navigateByUrl('/login');
-      } else {
-        this.snackBar.openSnackBar("Account Couldn't be created", " ");
-      }
+      this.snackBar.openSnackBar(response.body.message, "");
+      this.router.navigateByUrl('/login');
       this.resetSignupData();
       this.spinnerService.hide();
     },
       error => {
-        if (error.status == 201) {
-          this.snackBar.openSnackBar("Account created successfully", "");
-          this.router.navigateByUrl('/login');
-        } else {
-          this.snackBar.openSnackBar("Account Couldn't be created", " ");
-        }
+        this.snackBar.openSnackBar(error.error.message, "");
         this.resetSignupData();
         this.spinnerService.hide();
       }

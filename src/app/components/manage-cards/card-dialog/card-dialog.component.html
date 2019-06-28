@@ -4,20 +4,20 @@
   <div>
     <span style="float: left;">Card Number</span>
     <span style="float: right;">
-      <button mat-icon-button matSuffix [attr.aria-label]="'Delete Card'">
+      <button mat-icon-button matSuffix (click)="deleteAccount()" [attr.aria-label]="'Delete Card'">
         <mat-icon style="color: red;">delete_forever</mat-icon>
       </button>
     </span>
   </div>
   <br>
   <div style="font-weight: bold;">
-    {{cardData.cardNo}}
+    {{cardData.cardNumber}}
   </div>
 </div>
 
 <mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Name On Card" [formControl]="name" [(ngModel)]="cardData.name">
+    <input matInput placeholder="Name On Card" [formControl]="name" [(ngModel)]="cardData.cardName">
     <mat-error *ngIf="name.invalid">Enter valid name</mat-error>
   </mat-form-field>
 

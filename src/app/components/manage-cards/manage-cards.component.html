@@ -6,14 +6,14 @@
 
   <div class="container-body">
 
-    <mat-card>
+    <mat-card *ngFor="let card of accounts;">
       <mat-card-header>
         <div style="width: 100%;">
           <span style="float: left;margin-top: 5%; font-weight: bolder;">
             CARD DETAILS
           </span>
           <span style="float: right;">
-            <button mat-icon-button aria-label="Edit/Remove Card" (click)="editCard(carddata)"
+            <button mat-icon-button aria-label="Edit/Remove Card" (click)="editCard(card)"
               style="background: #104E8B;width: 30px; height: 30px;" class="mat-elevation-z2">
               <mat-icon style="vertical-align: unset;color: white; font-size: 20px;">edit</mat-icon>
             </button>
@@ -26,12 +26,12 @@
       <mat-card-content>
         <div class="card-field">
           <div class="card-field-name">Card Number</div>
-          <div class="card-field-value" style="font-weight: bold;">1234 6544 6546 4564</div>
+          <div class="card-field-value" style="font-weight: bold;">{{card.cardNumber}}</div>
         </div>
 
         <div class="card-field">
           <div class="card-field-name">Name On Card</div>
-          <div class="card-field-value">Swarit Sharma</div>
+          <div class="card-field-value">{{card.cardName}}</div>
         </div>
 
         <div class="card-field">
@@ -41,8 +41,8 @@
           </div>
           <br>
           <div class="card-field-value">
-            <span style="float: left;">Debit Card</span>
-            <span style="float: right; font-weight: bold;">02/22</span>
+            <span style="float: left;">{{card.cardType}}</span>
+            <span style="float: right; font-weight: bold;">{{card.expiryDate}}</span>
           </div>
         </div>
 

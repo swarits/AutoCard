@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { FormControl, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'app-card-dialog',
@@ -17,12 +18,12 @@ export class CardDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     private accountService: AccountService,
-    private dialogRef: MatDialogRef<CardDialogComponent>
+    private dialogRef: MatDialogRef<CardDialogComponent>,
+    private snackBar: SnackBarService
   ) {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.cardData = Object.assign({}, this.data);
   }
 
@@ -35,9 +36,24 @@ export class CardDialogComponent implements OnInit {
   }
 
   editCard() {
-    let details = {};
-    this.accountService.editAccount(details);
-    this.closeDialog();
+    this.accountService.editAccount(this.cardData['userId'], this.cardData['cardNumber'], this.cardData)
+      .subscribe(response => {
+        this.snackBar.openSnackBar(response.message, "");
+        this.closeDialog();
+      }, error => {
+        this.snackBar.openSnackBar(error.error.message, "");
+      });
+  }
+
+  deleteAccount() {
+    this.accountService.deleteAccount(this.cardData['userId'], this.cardData['cardNumber'])
+      .subscribe(response => {
+        this.closeDialog();
+        this.snackBar.openSnackBar(response.message, "");
+      },
+        error => {
+          this.snackBar.openSnackBar(error.error.message, "");
+        });
   }
 
 }
