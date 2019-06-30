@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 
-//modules
+//material modules
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,8 +12,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
-
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -77,6 +79,8 @@ import { NavComponent } from './components/signup/nav/nav.component';
     HttpClientModule,
 
     MatSnackBarModule,
+
+    MatSidenavModule
   ],
   providers: [
   ],
