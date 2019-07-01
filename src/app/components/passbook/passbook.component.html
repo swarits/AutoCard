@@ -1,10 +1,115 @@
 <app-top-nav></app-top-nav>
 <mat-sidenav-container class="main-container" (backdropClick)="close()">
     <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
-        <button mat-button (click)="close()">Toggle</button>
+
+
+        <div class="filter-actions">
+            <button mat-button color="warn" (click)="close()">Cancel</button>
+            <button mat-flat-button color="primary" (click)="applyFilters()" style="float: right;">Apply
+                Filters</button>
+        </div>
+
+        <div class="search-filter mat-elevation-z3">
+            <div class="filter-type">
+                Cards:
+            </div>
+
+            <div class="filter-options">
+                <span *ngFor="let card of cards | keys">
+                    <mat-checkbox color="primary" [(ngModel)]="card.value">
+                        {{card.key}}
+                    </mat-checkbox>
+                    <br>
+                </span>
+            </div>
+        </div>
+
+        <div class="search-filter">
+            <div class="filter-type">
+                Categories:
+            </div>
+
+            <div class="filter-options">
+                <span *ngFor="let category of categories | keys">
+                    <mat-checkbox color="primary" [(ngModel)]="category.value">
+                        {{category.key}}
+                    </mat-checkbox>
+                    <br>
+                </span>
+            </div>
+        </div>
+
+
+        <div class="search-filter">
+            <div class="filter-type">
+                Merchants:
+            </div>
+
+            <div class="filter-options">
+                <span *ngFor="let merchant of merchants | keys">
+                    <mat-checkbox color="primary" [(ngModel)]="merchant.value">
+                        {{merchant.key}}
+                    </mat-checkbox>
+                    <br>
+                </span>
+            </div>
+
+        </div>
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <p><button mat-button (click)="sidenav.open()">Open</button></p>
+
+        <div class="container">
+
+            <div class="container-header">
+                <div class="container-header-content">
+                    <button mat-icon-button color="primary" style="background-color: aliceblue;" aria-label="Filters"
+                        (click)="sidenav.open()">
+                        <mat-icon>filter_list</mat-icon>
+                    </button>
+                </div>
+
+                <div class="container-header-title">
+                    <h2>Passbook</h2>
+                </div>
+            </div>
+
+            <div class="container-divider"></div>
+
+            <div class="container-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Card No.</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Merchant</th>
+                            <th>Category</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let transaction of transactions">
+                            <td>{{transaction.CardNumber}}</td>
+                            <td>{{transaction.Amount}}</td>
+                            <td>{{transaction.Date}}</td>
+                            <td>{{transaction.Merchant}}</td>
+                            <td>{{transaction.Category}}</td>
+                            <td>{{transaction.Type}}</td>
+                            <td>{{transaction.Description}}</td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+
+
+        </div>
+
     </mat-sidenav-content>
 </mat-sidenav-container>

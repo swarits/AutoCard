@@ -37,6 +37,7 @@ import { CardDialogComponent } from './components/manage-cards/card-dialog/card-
 import { NewCardDialogComponent } from './components/manage-cards/new-card-dialog/new-card-dialog.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NavComponent } from './components/signup/nav/nav.component';
+import { KeysPipe } from './custom-pipes/keys-pipe.pipe';
 
 //utility classes
 
@@ -53,7 +54,8 @@ import { NavComponent } from './components/signup/nav/nav.component';
     CardDialogComponent,
     NewCardDialogComponent,
     SignupComponent,
-    NavComponent
+    NavComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
