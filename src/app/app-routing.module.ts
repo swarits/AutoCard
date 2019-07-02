@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: '', component: SignupComponent},
   {path: 'login', component: LoginComponent},
   {path: 'passbook', component: PassbookComponent, canActivate: [AuthGuardService]},
-  {path: 'manage-cards', component: ManageCardsComponent, canDeactivate: [AuthGuardService]},
+  {path: 'manage-cards', component: ManageCardsComponent, canActivate: [AuthGuardService]},
   {path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService]}
   
 ];
