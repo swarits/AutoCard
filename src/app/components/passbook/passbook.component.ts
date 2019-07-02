@@ -3,6 +3,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { AccountService } from 'src/app/services/account.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { MerchantsService } from 'src/app/services/merchants.service';
+import { TransactionCategoriesService } from 'src/app/services/transaction-categories.service';
 
 @Component({
   selector: 'app-passbook',
@@ -16,31 +18,10 @@ export class PassbookComponent implements OnInit {
 
 
   requestCategories = [];
-  categories = [
-    "Entertainment",
-    "Education",
-    "Shopping",
-    "Personal Care",
-    "Health & Fitness",
-    "Kids",
-    "Food & Dining",
-    "Gifts & Donations",
-    "Investments",
-    "Bils & Utilities",
-    "Auto & Transport",
-    "Travel",
-    "Fees & Charges",
-    "Business Services",
-    "Taxes"
-  ];
-
+  categories = [];
 
   requestMerchants = [];
-  merchants = [
-    "Amazon",
-    "Flipkart",
-    "paytm"
-  ];
+  merchants = [];
 
   transactions = [];
 
@@ -48,7 +29,9 @@ export class PassbookComponent implements OnInit {
 
   constructor(private accountService: AccountService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private merchantsService: MerchantsService,
+    private transactionCategories: TransactionCategoriesService
   ) { }
 
   ngOnInit() {
@@ -60,19 +43,35 @@ export class PassbookComponent implements OnInit {
     if (this.userId != null) {
       this.accountService.getCards(this.userId).subscribe(response => {
         this.cards = response;
-        this.requestCards = Object.assign([], response);
-        this.requestCategories = Object.assign([], this.categories);
-        this.requestMerchants = Object.assign([], this.merchants);
+        // this.requestCards = Object.assign([], response);
 
-        this.accountService.getTransactions(this.requestCards, this.requestCategories, this.requestMerchants).subscribe(response => {
-          this.transactions = response;
-        },error => {
-          this.snackBar.openSnackBar(error.error.message, "");
-        }
-        )
+        this.merchantsService.getMerchants().subscribe(response => {
+          this.merchants = response;
+          // this.requestMerchants = Object.assign([], this.merchants);
+
+          this.transactionCategories.getCategories().subscribe(response => {
+            this.categories = response;
+            // this.requestCategories = Object.assign([], this.categories);
+
+            this.accountService.getTransactions(this.cards, this.categories, this.merchants).subscribe(response => {
+              this.transactions = response;
+            }, error => {
+              this.snackBar.openSnackBar(error.error.message, "");
+            });
+
+          }, error => {
+            this.snackBar.openSnackBar(error.error.message, "");
+          });
+
+        },
+          error => {
+            this.snackBar.openSnackBar(error.error.message, "");
+          });
 
       }, error => {
       });
+
+
     }
   }
 
@@ -120,7 +119,17 @@ export class PassbookComponent implements OnInit {
 
   applyFilters() {
 
-    this.accountService.getTransactions(this.requestCards, this.requestCategories, this.requestMerchants).subscribe(
+    let _categories = this.requestCategories;
+    let _merchants = this.requestMerchants;
+
+    if (_categories.length == 0)
+      _categories = this.categories;
+
+    if (_merchants.length == 0)
+      _merchants = this.merchants;
+
+
+    this.accountService.getTransactions(this.requestCards, _categories, _merchants).subscribe(
       response => {
         this.transactions = response;
         this.spinnerService.hide();
