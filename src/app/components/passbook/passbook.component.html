@@ -15,9 +15,9 @@
             </div>
 
             <div class="filter-options">
-                <span *ngFor="let card of cards | keys">
-                    <mat-checkbox color="primary" [(ngModel)]="card.value">
-                        {{card.key}}
+                <span *ngFor="let card of cards">
+                    <mat-checkbox color="primary" [checked]="true" (change)="checkCard(card,$event)">
+                        {{card}}
                     </mat-checkbox>
                     <br>
                 </span>
@@ -30,9 +30,9 @@
             </div>
 
             <div class="filter-options">
-                <span *ngFor="let category of categories | keys">
-                    <mat-checkbox color="primary" [(ngModel)]="category.value">
-                        {{category.key}}
+                <span *ngFor="let category of categories">
+                    <mat-checkbox color="primary" [checked]="true" (change)="checkCategory(category,$event)">
+                        {{category}}
                     </mat-checkbox>
                     <br>
                 </span>
@@ -46,9 +46,9 @@
             </div>
 
             <div class="filter-options">
-                <span *ngFor="let merchant of merchants | keys">
-                    <mat-checkbox color="primary" [(ngModel)]="merchant.value">
-                        {{merchant.key}}
+                <span *ngFor="let merchant of merchants">
+                    <mat-checkbox color="primary" [checked]="true" (change)="checkMerchant(merchant,$event)">
+                        {{merchant}}
                     </mat-checkbox>
                     <br>
                 </span>
@@ -92,13 +92,13 @@
 
                     <tbody>
                         <tr *ngFor="let transaction of transactions">
-                            <td>{{transaction.CardNumber}}</td>
-                            <td>{{transaction.Amount}}</td>
-                            <td>{{transaction.Date}}</td>
-                            <td>{{transaction.Merchant}}</td>
-                            <td>{{transaction.Category}}</td>
-                            <td>{{transaction.Type}}</td>
-                            <td>{{transaction.Description}}</td>
+                            <td>{{transaction.cardNumber}}</td>
+                            <td>{{transaction.amount}}</td>
+                            <td>{{transaction.dateTime}}</td>
+                            <td>{{transaction.merchant}}</td>
+                            <td>{{transaction.category}}</td>
+                            <td>{{transaction.type}}</td>
+                            <td>{{transaction.description}}</td>
                         </tr>
                     </tbody>
 
