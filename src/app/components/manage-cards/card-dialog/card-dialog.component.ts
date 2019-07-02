@@ -25,24 +25,35 @@ export class CardDialogComponent implements OnInit {
 
   ngOnInit() {
     this.cardData = Object.assign({}, this.data);
+    this.expiryMonth = this.cardData['expiryDate'].split('/')[0];
+    this.expiryYear.setValue(this.cardData['expiryDate'].split('/')[1]);
   }
 
   name = new FormControl('', [Validators.required, Validators.pattern(/^[\sA-Za-z]+$/)]);
+  expiryYear = new FormControl('', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]);
 
-  expiryDate = new FormControl('', [Validators.required, Validators.pattern(/^\d{2}\/\d{2}$/)]);
+  expiryMonth = null;
 
   closeDialog() {
     this.dialogRef.close();
   }
 
   editCard() {
-    this.accountService.editAccount(this.cardData['userId'], this.cardData['cardNumber'], this.cardData)
-      .subscribe(response => {
-        this.snackBar.openSnackBar(response.message, "");
-        this.closeDialog();
-      }, error => {
-        this.snackBar.openSnackBar(error.error.message, "");
-      });
+
+    if (parseInt(this.expiryMonth) >= new Date().getMonth() && parseInt(this.expiryYear.value) >= new Date().getFullYear()) {
+
+      this.cardData['expiryDate'] = (this.expiryMonth +"/"+ this.expiryYear.value);
+      this.accountService.editAccount(this.cardData['userId'], this.cardData['cardNumber'], this.cardData)
+        .subscribe(response => {
+          this.snackBar.openSnackBar(response.message, "");
+          this.closeDialog();
+        }, error => {
+          this.snackBar.openSnackBar(error.error.message, "");
+        });
+    }else {
+      this.snackBar.openSnackBar("Enter valid expiry date.", "");
+    }
+
   }
 
   deleteAccount() {

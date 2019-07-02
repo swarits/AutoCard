@@ -23,28 +23,37 @@ export class NewCardDialogComponent implements OnInit {
 
   cardNumber = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(16), Validators.minLength(16)]);
   name = new FormControl('', [Validators.required, Validators.pattern(/^[\sA-Za-z]+$/)]);
-  expiryDate = new FormControl('', [Validators.required, Validators.pattern(/^\d{2}\/\d{2}$/)]);
+  expiryYear = new FormControl('', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]);
+
+  expiryMonth = null;
 
   closeDialog() {
     this.dialogRef.close();
   }
 
   addCard() {
-    let details = {
-      "userId": window.localStorage.getItem("userId"),
-      "cardNumber": this.cardNumber.value,
-      "cardName": this.name.value,
-      "cardType": this.cardType,
-      "expiryDate": this.expiryDate.value
+    // console.log(this.expiryMonth)
+    // console.log(this.expiryYear.value)
+    if(parseInt(this.expiryMonth)>=new Date().getMonth() && parseInt(this.expiryYear.value)>=new Date().getFullYear()){
+      let details = {
+        "userId": window.localStorage.getItem("userId"),
+        "cardNumber": this.cardNumber.value,
+        "cardName": this.name.value,
+        "cardType": this.cardType,
+        "expiryDate": (this.expiryMonth +"/"+ this.expiryYear.value)
+      }
+      // console.log(details);
+  
+      this.accountService.addAccount(details)
+        .subscribe(response => {
+          this.snackBar.openSnackBar(response.message, "");
+          this.closeDialog();
+        }, error => {
+          this.snackBar.openSnackBar(error.error.message, "");
+        });
+    }else {
+      this.snackBar.openSnackBar("Enter valid expiry date.", "");
     }
-
-    this.accountService.addAccount(details)
-      .subscribe(response => {
-        this.snackBar.openSnackBar(response.message, "");
-        this.closeDialog();
-      }, error => {
-        this.snackBar.openSnackBar(error.error.message, "");
-      });
 
   }
 
