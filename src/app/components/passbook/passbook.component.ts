@@ -53,11 +53,7 @@ export class PassbookComponent implements OnInit {
             this.categories = response;
             // this.requestCategories = Object.assign([], this.categories);
 
-            this.accountService.getTransactions(this.cards, this.categories, this.merchants).subscribe(response => {
-              this.transactions = response;
-            }, error => {
-              this.snackBar.openSnackBar(error.error.message, "");
-            });
+            this.getTransactions(this.cards, this.categories, this.merchants);
 
           }, error => {
             this.snackBar.openSnackBar(error.error.message, "");
@@ -117,6 +113,21 @@ export class PassbookComponent implements OnInit {
     this.sidenav.close();
   }
 
+  getTransactions(cards, categories, merchants) {
+
+    this.accountService.getTransactions(cards, categories, merchants).subscribe(
+      response => {
+        this.transactions = response;
+        this.spinnerService.hide();
+        this.close();
+        this.snackBar.openSnackBar("Transactions Updated", "");
+      }, error => {
+        this.spinnerService.hide();
+        this.snackBar.openSnackBar(error.error.message, "");
+      }
+    );
+  }
+
   applyFilters() {
 
     let _categories = this.requestCategories;
@@ -128,18 +139,15 @@ export class PassbookComponent implements OnInit {
     if (_merchants.length == 0)
       _merchants = this.merchants;
 
+    this.getTransactions(this.requestCards, _categories, _merchants);
 
-    this.accountService.getTransactions(this.requestCards, _categories, _merchants).subscribe(
-      response => {
-        this.transactions = response;
-        this.spinnerService.hide();
-        this.close();
-        this.snackBar.openSnackBar("Transactions filtered", "");
-      }, error => {
-        this.spinnerService.hide();
-        this.snackBar.openSnackBar(error.error.message, "");
-      }
-    )
+  }
+
+  resetFilters() {
+    this.requestCards = [];
+    this.requestCategories = [];
+    this.requestMerchants = [];
+    this.getTransactions(this.cards, this.categories, this.merchants);
   }
 
 }
