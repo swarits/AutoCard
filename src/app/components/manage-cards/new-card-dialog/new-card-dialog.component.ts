@@ -21,7 +21,7 @@ export class NewCardDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  cardNumber = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]);
+  cardNumber = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(16), Validators.minLength(16)]);
   name = new FormControl('', [Validators.required, Validators.pattern(/^[\sA-Za-z]+$/)]);
   expiryDate = new FormControl('', [Validators.required, Validators.pattern(/^\d{2}\/\d{2}$/)]);
 
