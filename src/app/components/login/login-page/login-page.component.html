@@ -20,6 +20,7 @@
 
   <mat-card-actions style="padding-bottom: 10px; padding-top: 5px;">
     <button mat-raised-button (click)="signIn()" color="primary"  [disabled]="email_form_control.invalid || password_form_control.invalid">Sign In</button>
+    <button mat-button (click)="resetPassword()" style="float: right;color: blue;">Reset Password</button>
   </mat-card-actions>
 
 </mat-card>

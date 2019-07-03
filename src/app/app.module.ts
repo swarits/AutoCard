@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
@@ -38,6 +38,8 @@ import { NewCardDialogComponent } from './components/manage-cards/new-card-dialo
 import { SignupComponent } from './components/signup/signup.component';
 import { NavComponent } from './components/signup/nav/nav.component';
 import { KeysPipe } from './custom-pipes/keys-pipe.pipe';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { EmailDialogComponent } from './components/login/email-dialog/email-dialog.component';
 
 //utility classes
 
@@ -55,7 +57,9 @@ import { KeysPipe } from './custom-pipes/keys-pipe.pipe';
     NewCardDialogComponent,
     SignupComponent,
     NavComponent,
-    KeysPipe
+    KeysPipe,
+    ResetPasswordComponent,
+    EmailDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,8 @@ import { KeysPipe } from './custom-pipes/keys-pipe.pipe';
   bootstrap: [AppComponent],
   entryComponents: [
     CardDialogComponent,
-    NewCardDialogComponent
+    NewCardDialogComponent,
+    EmailDialogComponent
   ]
 })
 export class AppModule { }

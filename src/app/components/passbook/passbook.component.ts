@@ -115,17 +115,20 @@ export class PassbookComponent implements OnInit {
 
   getTransactions(cards, categories, merchants) {
 
-    this.accountService.getTransactions(cards, categories, merchants).subscribe(
-      response => {
-        this.transactions = response;
-        this.spinnerService.hide();
-        this.close();
-        this.snackBar.openSnackBar("Transactions Updated", "");
-      }, error => {
-        this.spinnerService.hide();
-        this.snackBar.openSnackBar(error.error.message, "");
-      }
-    );
+    if (cards.length != 0) {
+      this.accountService.getTransactions(cards, categories, merchants).subscribe(
+        response => {
+          this.transactions = response;
+          this.spinnerService.hide();
+          this.close();
+          this.snackBar.openSnackBar("Transactions Updated", "");
+        }, error => {
+          this.spinnerService.hide();
+          this.snackBar.openSnackBar(error.error.message, "");
+        }
+      );
+    }
+
   }
 
   applyFilters() {

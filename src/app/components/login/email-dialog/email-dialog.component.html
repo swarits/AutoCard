@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Enter email to reset password.</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Email" [formControl]="email_form_control" required>
+    <mat-error *ngIf="email_form_control.invalid">Enter email linked to account.</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="resetPassword()"
+    [disabled]="email_form_control.invalid">Send Password Reset Link</button>
+</mat-dialog-actions>

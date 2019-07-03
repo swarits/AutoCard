@@ -6,6 +6,8 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 import { CookieService } from 'ngx-cookie-service';
+import { MatDialog } from '@angular/material/dialog';
+import { EmailDialogComponent } from '../email-dialog/email-dialog.component';
 
 @Component({
   selector: 'app-login-page',
@@ -15,7 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginPageComponent implements OnInit {
 
   hide = true;
-  constructor(private cookieService: CookieService, private router: Router, private userService: UserService, private snackbar: SnackBarService, private spinnerService: Ng4LoadingSpinnerService) { }
+  constructor(private dialog: MatDialog,private cookieService: CookieService, private router: Router, private userService: UserService, private snackbar: SnackBarService, private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
   }
@@ -46,6 +48,10 @@ export class LoginPageComponent implements OnInit {
           this.spinnerService.hide();
         });
 
+  }
+
+  resetPassword() {
+    this.dialog.open(EmailDialogComponent);
   }
 
   setSignInData(response) {
