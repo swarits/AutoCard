@@ -11,13 +11,21 @@
     <mat-error *ngIf="name.invalid">Enter valid name</mat-error>
   </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Card Type</mat-label>
-    <mat-select [(value)]="cardType" required>
-      <mat-option value="Debit Card">Debit Card</mat-option>
-      <mat-option value="Credit Card">Credit Card</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div>
+      <mat-form-field style="max-width: 100px;float:left;">
+        <mat-label>Card Type</mat-label>
+        <mat-select [(value)]="cardType" required>
+          <mat-option value="Debit Card">Debit Card</mat-option>
+          <mat-option value="Credit Card">Credit Card</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field style="max-width: 100px; float:right;">
+        <input matInput placeholder="CVV" [formControl]="cvv" [type]="'password'" required>
+        <mat-error *ngIf="cvv.invalid">invalid cvv</mat-error>
+      </mat-form-field>
+    </div>
+
 
   <div style="width: 100%; display: inline-flex;">
     <div style="padding-right: 10px;">

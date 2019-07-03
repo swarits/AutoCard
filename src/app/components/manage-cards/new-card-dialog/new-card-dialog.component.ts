@@ -24,7 +24,7 @@ export class NewCardDialogComponent implements OnInit {
   cardNumber = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(16), Validators.minLength(16)]);
   name = new FormControl('', [Validators.required, Validators.pattern(/^[\sA-Za-z]+$/)]);
   expiryYear = new FormControl('', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]);
-
+  cvv = new FormControl('',[Validators.required, Validators.maxLength(3), Validators.minLength(3), Validators.pattern(/^[0-9]+$/)]);
   expiryMonth = null;
 
   closeDialog() {
@@ -34,7 +34,7 @@ export class NewCardDialogComponent implements OnInit {
   addCard() {
     // console.log(this.expiryMonth)
     // console.log(this.expiryYear.value)
-    if(parseInt(this.expiryMonth)>=new Date().getMonth() && parseInt(this.expiryYear.value)>=new Date().getFullYear()){
+    if(parseInt(this.expiryMonth)>new Date().getMonth() && parseInt(this.expiryYear.value)>=new Date().getFullYear()){
       let details = {
         "userId": window.localStorage.getItem("userId"),
         "cardNumber": this.cardNumber.value,
