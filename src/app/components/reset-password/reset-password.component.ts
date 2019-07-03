@@ -27,7 +27,7 @@ export class ResetPasswordComponent implements OnInit {
   email = null;
 
   ngOnInit() {
-    this.spinnerService.show()
+
     this.activatedRoute.queryParams.subscribe(params => {
       const email = params['email'];
       const token = params['token'];
@@ -36,11 +36,9 @@ export class ResetPasswordComponent implements OnInit {
       this.userService.resetPassword(email, token).subscribe(response => {
         this.showResetPrompt = true;
         this.snackBar.openSnackBar(response.message, "");
-        this.spinnerService.hide();
       }, error => {
         this.snackBar.openSnackBar(error.error.message, "");
         this.router.navigateByUrl('/login');
-        this.spinnerService.hide();
       });
 
     })
@@ -64,14 +62,17 @@ export class ResetPasswordComponent implements OnInit {
 
   changePassword() {
     if (this.email != null) {
+      this.spinnerService.show()
       let details = {
         "email": this.email,
         "password": this.signupForm.get("password").value
       }
       this.userService.changePassword(details).subscribe(response => {
         this.snackBar.openSnackBar(response.message, "");
-      },error => {
+        this.spinnerService.hide();
+      }, error => {
         this.snackBar.openSnackBar(error.error.message, "");
+        this.spinnerService.hide();
       });
       this.router.navigateByUrl('/login');
     }
