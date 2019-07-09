@@ -34,24 +34,24 @@
       <mat-form-field style="max-width: 100px;float:left;">
         <mat-label>Expiry Month</mat-label>
         <select matNativeControl [(ngModel)]="expiryMonth" required>
-          <option value="01">January</option>
-          <option value="02">February</option>
-          <option value="03">March</option>
-          <option value="04">April</option>
-          <option value="05">May</option>
-          <option value="06">June</option>
-          <option value="07">July</option>
-          <option value="08">August</option>
-          <option value="09">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
+          <option value="01" disabled>January</option>
+          <option value="02" disabled>February</option>
+          <option value="03" disabled>March</option>
+          <option value="04" disabled>April</option>
+          <option value="05" disabled>May</option>
+          <option value="06" disabled>June</option>
+          <option value="07" disabled>July</option>
+          <option value="08" disabled>August</option>
+          <option value="09" disabled>September</option>
+          <option value="10" disabled>October</option>
+          <option value="11" disabled>November</option>
+          <option value="12" disabled>December</option>
         </select>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field style="max-width: 100px; float:right;">
-        <input matInput placeholder="Expiry Year" [formControl]="expiryYear" required>
+        <input matInput placeholder="Expiry Year" [formControl]="expiryYear" style="color: black;" required>
         <mat-error *ngIf="expiryYear.invalid">Format: 'yyyy' </mat-error>
       </mat-form-field>
     </div>

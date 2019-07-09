@@ -25,8 +25,9 @@ export class CardDialogComponent implements OnInit {
 
   ngOnInit() {
     this.cardData = Object.assign({}, this.data);
-    this.expiryMonth = this.cardData['expiryDate'].split('/')[0];
-    this.expiryYear.setValue(this.cardData['expiryDate'].split('/')[1]);
+    this.expiryMonth = this.cardData['expiryDate'].split('-')[1];
+    this.expiryYear.setValue(this.cardData['expiryDate'].split('-')[0]);
+    this.expiryYear.disable();
   }
 
   name = new FormControl('', [Validators.required, Validators.pattern(/^[\sA-Za-z]+$/)]);
@@ -42,7 +43,7 @@ export class CardDialogComponent implements OnInit {
 
     if (parseInt(this.expiryMonth) >= new Date().getMonth() && parseInt(this.expiryYear.value) >= new Date().getFullYear()) {
 
-      this.cardData['expiryDate'] = (this.expiryMonth +"/"+ this.expiryYear.value);
+      this.cardData['expiryDate'] = (this.expiryYear.value +"-"+ this.expiryMonth);
       this.accountService.editAccount(this.cardData['userId'], this.cardData['cardNumber'], this.cardData)
         .subscribe(response => {
           this.snackBar.openSnackBar(response.message, "");
