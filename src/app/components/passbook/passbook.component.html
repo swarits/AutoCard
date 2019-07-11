@@ -84,6 +84,7 @@
                     <thead class="mat-elevation-z2">
                         <tr>
                             <th>Card No.</th>
+                            <th>Ref. No.</th>
                             <th>Amount</th>
                             <th>Date</th>
                             <th>Merchant</th>
@@ -96,7 +97,8 @@
                     <tbody>
                         <tr *ngFor="let transaction of transactions">
                             <td>{{transaction.cardNumber}}</td>
-                            <td>{{transaction.amount}}</td>
+                            <td>{{transaction.transactionKey}}</td>
+                            <td>{{transaction.amount}}&nbsp;{{transaction.currency}}</td>
                             <td>{{transaction.dateTime}}</td>
                             <td>{{transaction.merchant}}</td>
                             <td>{{transaction.category}}</td>
