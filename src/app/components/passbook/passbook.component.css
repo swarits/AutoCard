@@ -47,7 +47,9 @@ mat-sidenav-content {
     color: white;
 }
 
-.container-content {}
+.container-content {
+    overflow: auto;
+}
 
 .container-header-title {
     float: right;

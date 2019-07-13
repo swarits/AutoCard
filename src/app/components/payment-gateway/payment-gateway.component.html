@@ -1,0 +1,49 @@
+<app-top-nav></app-top-nav>
+<mat-card>
+
+  <div class="row-div">
+    <mat-form-field>
+      <mat-label>Select Card</mat-label>
+      <mat-select [(value)]="card" required>
+        <span *ngFor="let card of cards">
+          <mat-option value="{{card}}">{{card}}</mat-option>
+        </span>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Merchant</mat-label>
+      <mat-select [(value)]="merchant" required>
+        <span *ngFor="let m of merchants">
+          <mat-option value="{{m}}">{{m}}</mat-option>
+        </span>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+
+  <div class="row-div">
+    <mat-form-field>
+      <input matInput placeholder="Amount" [(ngModel)]="amount">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select [(value)]="category" required>
+        <span *ngFor="let c of categories">
+          <mat-option value="{{c}}">{{c}}</mat-option>
+        </span>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Description" [(ngModel)]="description"></textarea>
+  </mat-form-field>
+
+  <mat-card-actions style="margin: 0 33%;">
+    <button mat-raised-button (click)="makeTransaction()" color="primary">Make Payment</button>
+  </mat-card-actions>
+
+</mat-card>

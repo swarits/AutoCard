@@ -40,6 +40,7 @@ import { NavComponent } from './components/signup/nav/nav.component';
 import { KeysPipe } from './custom-pipes/keys-pipe.pipe';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EmailDialogComponent } from './components/login/email-dialog/email-dialog.component';
+import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
 
 //utility classes
 
@@ -59,7 +60,8 @@ import { EmailDialogComponent } from './components/login/email-dialog/email-dial
     NavComponent,
     KeysPipe,
     ResetPasswordComponent,
-    EmailDialogComponent
+    EmailDialogComponent,
+    PaymentGatewayComponent,
   ],
   imports: [
     BrowserModule,

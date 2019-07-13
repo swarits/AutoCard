@@ -13,6 +13,7 @@ mat-menu {
 .profile-note {
     padding: 0 12px;
     color: #24292e;
+    background-image: linear-gradient(-180deg,#E0FFFF,#87CEFA 90%);
 }
 
 .sign-out {
@@ -42,7 +43,7 @@ a {
 }
 
 a:hover, button:hover {
-    background-color: #0366d6;
+    background-color: cornflowerblue;
     color: #fff;
     outline: none;
     text-decoration: none;

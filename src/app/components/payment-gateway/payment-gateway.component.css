@@ -1,0 +1,15 @@
+mat-form-field {
+    display: block;
+    margin: 0px 4px;
+}
+
+mat-card {
+    width: 375px;
+    margin: 8% auto;
+    padding: 30px 16px;
+    overflow: hidden;
+}
+
+.row-div {
+    display: inline-flex;
+}

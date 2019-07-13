@@ -9,6 +9,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import {PaymentGatewayComponent} from './components/payment-gateway/payment-gateway.component';
 
 const routes: Routes = [
 
@@ -17,8 +18,8 @@ const routes: Routes = [
   {path: 'passbook', component: PassbookComponent, canActivate: [AuthGuardService]},
   {path: 'manage-cards', component: ManageCardsComponent, canActivate: [AuthGuardService]},
   {path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService]},
-  {path: 'reset-password', component: ResetPasswordComponent}
-  
+  {path: 'reset-password', component: ResetPasswordComponent},
+  {path: 'payment-gateway', component: PaymentGatewayComponent}
 ];
 
 @NgModule({
