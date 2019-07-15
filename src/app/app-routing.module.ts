@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'manage-cards', component: ManageCardsComponent, canActivate: [AuthGuardService]},
   {path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService]},
   {path: 'reset-password', component: ResetPasswordComponent},
-  {path: 'payment-gateway', component: PaymentGatewayComponent}
+  {path: 'payment-gateway', component: PaymentGatewayComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({
