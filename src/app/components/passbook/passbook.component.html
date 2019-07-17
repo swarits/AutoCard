@@ -87,10 +87,11 @@
                             <th>Ref. No.</th>
                             <th>Amount</th>
                             <th>Date</th>
-                            <th>Merchant</th>
+                            <th>Paid To</th>
                             <th>Category</th>
                             <th>Type</th>
                             <th>Description</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
 
@@ -100,10 +101,18 @@
                             <td>{{transaction.transactionKey}}</td>
                             <td>{{transaction.amount}}&nbsp;{{transaction.currency}}</td>
                             <td>{{transaction.dateTime}}</td>
-                            <td>{{transaction.merchant}}</td>
+                            <td>
+                                <span *ngIf="transaction.merchant!=null">
+                                    {{transaction.merchant}}
+                                </span>
+                                <span *ngIf="transaction.person!=null">
+                                    {{transaction.person}}
+                                </span>
+                            </td>
                             <td>{{transaction.category}}</td>
                             <td>{{transaction.type}}</td>
                             <td>{{transaction.description}}</td>
+                            <td [ngClass]="transaction.transaction_status">{{transaction.transaction_status}}</td>
                         </tr>
                     </tbody>
 

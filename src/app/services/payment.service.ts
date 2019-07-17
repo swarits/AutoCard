@@ -15,4 +15,9 @@ export class PaymentService {
   makeTransaction(data) {
     return this.http.post<any>(this.config.host + '/transactions', data);
   }
+
+  transferToPerson(data) {
+    return this.http.post<any>(this.config.host + '/ptp-transfer', data);
+  }
+
 }

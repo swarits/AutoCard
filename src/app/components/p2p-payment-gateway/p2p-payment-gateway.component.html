@@ -1,1 +1,47 @@
 <app-top-nav></app-top-nav>
+<mat-card>
+
+    <div class="row-div sender-div">
+        <mat-form-field>
+            <mat-label>Select Card</mat-label>
+            <mat-select [(value)]="card" required>
+                <span *ngFor="let card of cards">
+                    <mat-option value="{{card}}">{{card}}</mat-option>
+                </span>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="CVV" [formControl]="cvv" [type]="'password'" required>
+            <mat-error *ngIf="cvv.invalid">invalid cvv</mat-error>
+        </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="row-div recipient-div">
+        <mat-form-field>
+            <input matInput placeholder="Recipient Name" [formControl]="recipientName" required>
+            <mat-error *ngIf="recipientName.invalid">Enter valid name</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Recipient Card No." [formControl]="recipientPrimaryAccountNumber" required>
+            <mat-error *ngIf="recipientPrimaryAccountNumber.invalid">Enter valid Card No</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field>
+            <textarea matInput placeholder="Remarks" [(ngModel)]="description"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Amount" [(ngModel)]="amount">
+        </mat-form-field>
+    </div>
+
+
+    <mat-card-actions style="margin: 0 33%;">
+        <button mat-raised-button (click)="transferMoney()" color="primary">Transfer Funds</button>
+    </mat-card-actions>
+
+</mat-card>

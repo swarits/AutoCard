@@ -2,6 +2,18 @@ h2 {
     margin: 0px;
 }
 
+.complete {
+    color: green;
+}
+
+.processing {
+    color: blue;
+}
+
+.pending {
+    color: orange;
+}
+
 .container-divider {
     border-top: 1px solid #e1e4e8;
     display: block;

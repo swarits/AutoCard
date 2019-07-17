@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import {MatDividerModule} from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
@@ -80,6 +80,7 @@ import { P2pPaymentGatewayComponent } from './components/p2p-payment-gateway/p2p
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatMenuModule,
+    MatDividerModule,
 
     FormsModule,
     ReactiveFormsModule,
