@@ -34,7 +34,10 @@ export class NewCardDialogComponent implements OnInit {
   }
 
   addCard() {
-    if (parseInt(this.expiryMonth) > new Date().getMonth() && parseInt(this.expiryYear.value) >= new Date().getFullYear()) {
+    console.log(this.expiryMonth, this.expiryYear.value)
+    console.log(parseInt(this.expiryYear.value) >= new Date().getFullYear());
+    console.log(parseInt(this.expiryMonth))
+    if (parseInt(this.expiryYear.value) > new Date().getFullYear() || (parseInt(this.expiryYear.value) == new Date().getFullYear() && parseInt(this.expiryMonth)) > new Date().getMonth()) {
       this.spinnerService.show();
       let details = {
         "userId": window.localStorage.getItem("userId"),

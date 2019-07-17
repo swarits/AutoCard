@@ -41,6 +41,7 @@ import { KeysPipe } from './custom-pipes/keys-pipe.pipe';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EmailDialogComponent } from './components/login/email-dialog/email-dialog.component';
 import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
+import { P2pPaymentGatewayComponent } from './components/p2p-payment-gateway/p2p-payment-gateway.component';
 
 //utility classes
 
@@ -62,6 +63,7 @@ import { PaymentGatewayComponent } from './components/payment-gateway/payment-ga
     ResetPasswordComponent,
     EmailDialogComponent,
     PaymentGatewayComponent,
+    P2pPaymentGatewayComponent,
   ],
   imports: [
     BrowserModule,
