@@ -8,7 +8,7 @@
 
       <mat-option *ngFor="let merchant of merchants" [value]="merchant.name">
         <img class="example-option-img" aria-hidden [src]="merchant.logo" height="45">
-        <span>{{merchant.name}}</span> |
+        <span>{{merchant.merchantName}}</span> |
         <small>{{merchant.city}}</small>
 
         <button class="pay-button" mat-flat-button aria-label="PayMerchant" (click)="payMerchant(merchant)">

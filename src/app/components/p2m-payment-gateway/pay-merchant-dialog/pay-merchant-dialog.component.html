@@ -15,10 +15,8 @@
     <mat-error *ngIf="cvv.invalid">invalid cvv</mat-error>
   </mat-form-field>
 
-
-
   <mat-form-field>
-    <input matInput placeholder="Merchant" value="{{data.name}}" [disabled]="true">
+    <input matInput placeholder="Merchant" value="{{data.merchantName}}" [disabled]="true">
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Amount" [(ngModel)]="amount">

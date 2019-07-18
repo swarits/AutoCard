@@ -31,10 +31,11 @@ export class P2mPaymentGatewayComponent implements OnInit {
 
   merchants = [
     {
-      name: 'STARBUCKS',
+      merchantName: 'STARBUCKS',
       category: 'FAST FOOD RESTAURANTS',
       logo: '/assets/Images/starbucks.png',
       city: 'SAN FRANCISCO',
+      merchantId: '29992901',
       address: '3338 N TEXAS ST STE A'
     }
   ];
