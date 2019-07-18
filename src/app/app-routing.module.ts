@@ -9,20 +9,21 @@ import { AuthGuardService } from './auth-guard.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import {PaymentGatewayComponent} from './components/payment-gateway/payment-gateway.component';
+import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
 import { P2pPaymentGatewayComponent } from './components/p2p-payment-gateway/p2p-payment-gateway.component';
+import { P2mPaymentGatewayComponent } from './components/p2m-payment-gateway/p2m-payment-gateway.component';
 
 const routes: Routes = [
 
-  {path: '', component: SignupComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'passbook', component: PassbookComponent, canActivate: [AuthGuardService]},
-  {path: 'manage-cards', component: ManageCardsComponent, canActivate: [AuthGuardService]},
-  {path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService]},
-  {path: 'reset-password', component: ResetPasswordComponent},
-  {path: 'payment-gateway', component: PaymentGatewayComponent, canActivate: [AuthGuardService]},
-  {path: 'p2p-payment-gateway', component: P2pPaymentGatewayComponent, canActivate: [AuthGuardService]},
-
+  { path: '', component: SignupComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'passbook', component: PassbookComponent, canActivate: [AuthGuardService] },
+  { path: 'manage-cards', component: ManageCardsComponent, canActivate: [AuthGuardService] },
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService] },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'payment-gateway', component: PaymentGatewayComponent, canActivate: [AuthGuardService] },
+  { path: 'p2p-payment-gateway', component: P2pPaymentGatewayComponent, canActivate: [AuthGuardService] },
+  { path: 'p2m-payment-gateway', component: P2mPaymentGatewayComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
@@ -42,6 +43,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { EmailDialogComponent } from './components/login/email-dialog/email-dialog.component';
 import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
 import { P2pPaymentGatewayComponent } from './components/p2p-payment-gateway/p2p-payment-gateway.component';
+import { P2mPaymentGatewayComponent } from './components/p2m-payment-gateway/p2m-payment-gateway.component';
+import { PayMerchantDialogComponent } from './components/p2m-payment-gateway/pay-merchant-dialog/pay-merchant-dialog.component';
 
 //utility classes
 
@@ -64,6 +67,8 @@ import { P2pPaymentGatewayComponent } from './components/p2p-payment-gateway/p2p
     EmailDialogComponent,
     PaymentGatewayComponent,
     P2pPaymentGatewayComponent,
+    P2mPaymentGatewayComponent,
+    PayMerchantDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +86,7 @@ import { P2pPaymentGatewayComponent } from './components/p2p-payment-gateway/p2p
     MatCheckboxModule,
     MatMenuModule,
     MatDividerModule,
+    MatAutocompleteModule,
 
     FormsModule,
     ReactiveFormsModule,
@@ -99,7 +105,8 @@ import { P2pPaymentGatewayComponent } from './components/p2p-payment-gateway/p2p
   entryComponents: [
     CardDialogComponent,
     NewCardDialogComponent,
-    EmailDialogComponent
+    EmailDialogComponent,
+    PayMerchantDialogComponent
   ]
 })
 export class AppModule { }
