@@ -4,6 +4,8 @@ import { P2mPaymentGatewayComponent } from '../p2m-payment-gateway.component';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { AccountService } from 'src/app/services/account.service';
 import { Validators, FormControl } from '@angular/forms';
+import { PaymentService } from 'src/app/services/payment.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-pay-merchant-dialog',
@@ -16,7 +18,9 @@ export class PayMerchantDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data,
     private dialogRef: MatDialogRef<P2mPaymentGatewayComponent>,
     private snackBar: SnackBarService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private paymentService: PaymentService,
+    private spinnerService: Ng4LoadingSpinnerService
   ) { }
 
   cards = [];
@@ -33,6 +37,27 @@ export class PayMerchantDialogComponent implements OnInit {
   }
 
   payMerchant() {
+    let data = {
+      "card": this.card,
+      "amount": this.amount,
+      "cvv": this.cvv.value,
+      "merchantId": this.data.merchantId,
+      "merchantName": this.data.merchantName
+    }
+    this.spinnerService.show();
+    this.paymentService.transferToMerchant(data).subscribe(response => {
+      this.spinnerService.hide();
+      this.closeDialog();
+      this.snackBar.openSnackBar(response.message, "");
+    }, error => {
+      this.spinnerService.hide();
+      this.snackBar.openSnackBar(error.error.message, "");
+    });
 
   }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
 }

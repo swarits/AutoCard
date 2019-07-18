@@ -20,4 +20,8 @@ export class PaymentService {
     return this.http.post<any>(this.config.host + '/ptp-transfer', data);
   }
 
+  transferToMerchant(data) {
+    return this.http.post<any>(this.config.host + '/ptm-transfer', data);
+  }
+
 }
