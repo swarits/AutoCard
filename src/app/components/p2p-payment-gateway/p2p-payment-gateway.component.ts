@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { registerLocaleData } from '@angular/common';
 
 @Component({
   selector: 'app-p2p-payment-gateway',
@@ -13,7 +15,8 @@ export class P2pPaymentGatewayComponent implements OnInit {
 
   constructor(private accountService: AccountService,
     private paymentService: PaymentService,
-    private spinnerService: Ng4LoadingSpinnerService) { }
+    private spinnerService: Ng4LoadingSpinnerService,
+    private snackBar: SnackBarService) { }
 
   ngOnInit() {
     this.accountService.getCards(window.localStorage.getItem('userId')).subscribe(response => {
@@ -42,11 +45,23 @@ export class P2pPaymentGatewayComponent implements OnInit {
     }
     this.spinnerService.show();
     this.paymentService.transferToPerson(data).subscribe(response => {
-    this.spinnerService.hide();
+      this.spinnerService.hide();
+      this.snackBar.openSnackBar(response.message,"");
+      this.resetData();
     }, error => {
       this.spinnerService.hide();
+      this.snackBar.openSnackBar(error.error.message, "");
     });
 
+  }
+
+  resetData() {
+    this.cvv.reset();
+    this.recipientName.reset();
+    this.recipientPrimaryAccountNumber.reset();
+    this.amount = null;
+    this.description = null;
+    this.card = null;
   }
 
 }
