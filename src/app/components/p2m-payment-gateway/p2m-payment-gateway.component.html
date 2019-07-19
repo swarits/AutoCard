@@ -1,7 +1,7 @@
-<app-top-nav></app-top-nav>
+<!-- <app-top-nav></app-top-nav> -->
 <div class="search-merchants">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Search and Pay" aria-label="Merchants" [matAutocomplete]="auto"
+    <input matInput placeholder="Search to pay Merchants..." aria-label="Merchants" [matAutocomplete]="auto"
       (keyup)="keyUp.next($event.target.value)">
 
     <mat-autocomplete #auto="matAutocomplete">

@@ -5,8 +5,7 @@ mat-form-field {
 
 .search-merchants {
     width: 375px;
-    margin: 8% auto;
-    padding: 30px 16px;
+    margin: 2% auto 0% auto;
     overflow: hidden;
 }
 

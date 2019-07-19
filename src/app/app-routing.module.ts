@@ -21,9 +21,7 @@ const routes: Routes = [
   { path: 'manage-cards', component: ManageCardsComponent, canActivate: [AuthGuardService] },
   { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService] },
   { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'payment-gateway', component: PaymentGatewayComponent, canActivate: [AuthGuardService] },
-  { path: 'p2p-payment-gateway', component: P2pPaymentGatewayComponent, canActivate: [AuthGuardService] },
-  { path: 'p2m-payment-gateway', component: P2mPaymentGatewayComponent, canActivate: [AuthGuardService] },
+  { path: 'payment-gateway', component: P2pPaymentGatewayComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

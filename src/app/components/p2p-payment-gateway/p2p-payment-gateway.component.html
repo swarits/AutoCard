@@ -1,5 +1,9 @@
 <app-top-nav></app-top-nav>
+<app-p2m-payment-gateway></app-p2m-payment-gateway>
 <mat-card>
+    <mat-card-header style="justify-content: center;">
+        <mat-card-title>Transfer Funds to another Card</mat-card-title>
+    </mat-card-header>
 
     <div class="row-div sender-div">
         <mat-form-field>
@@ -35,13 +39,13 @@
             <textarea matInput placeholder="Remarks" [(ngModel)]="description"></textarea>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Amount" [(ngModel)]="amount">
+            <input matInput placeholder="Amount" [(ngModel)]="amount" required>
         </mat-form-field>
     </div>
 
 
     <mat-card-actions style="margin: 0 33%;">
-        <button mat-raised-button (click)="transferMoney()" color="primary">Transfer Funds</button>
+        <button mat-raised-button (click)="transferMoney()" class="pay-button" [disabled]="cvv.invalid || recipientName.invalid ||  recipientPrimaryAccountNumber.invalid || amount==null || card==null">Transfer Funds</button>
     </mat-card-actions>
 
 </mat-card>
