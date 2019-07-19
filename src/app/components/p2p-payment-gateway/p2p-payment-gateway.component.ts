@@ -38,7 +38,7 @@ export class P2pPaymentGatewayComponent implements OnInit {
     let data = {
       "senderPrimaryAccountNumber": this.card,
       "recipientPrimaryAccountNumber": this.recipientPrimaryAccountNumber.value,
-      "cardCvv2Value": this.cvv.value,
+      "cvv": this.cvv.value,
       "amount": +this.amount,
       "recipientName": this.recipientName.value,
       "description": this.description
