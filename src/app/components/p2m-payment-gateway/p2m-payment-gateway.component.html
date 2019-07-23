@@ -6,7 +6,7 @@
 
     <mat-autocomplete #auto="matAutocomplete">
 
-      <mat-option *ngFor="let merchant of merchants" [value]="merchant.name">
+      <mat-option *ngFor="let merchant of searchedMerchants" [value]="merchant.name">
         <img class="example-option-img" aria-hidden [src]="merchant.logo" height="45">
         <span>{{merchant.merchantName}}</span> |
         <small>{{merchant.city}}</small>

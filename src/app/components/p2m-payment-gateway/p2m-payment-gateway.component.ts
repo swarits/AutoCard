@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, filter, catchError, mergeMap, distinctUntilChanged, debounceTime, delay } from 'rxjs/operators';
+import { map, filter, catchError, mergeMap, distinctUntilChanged, debounceTime, delay, skip } from 'rxjs/operators';
 import { Subject, Subscription, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { PayMerchantDialogComponent } from './pay-merchant-dialog/pay-merchant-dialog.component';
@@ -14,16 +14,20 @@ export class P2mPaymentGatewayComponent implements OnInit {
   public keyUp = new Subject<String>();
 
   private subscription: Subscription;
+  searchedMerchants = [];
 
   constructor(private dialog: MatDialog) {
     this.subscription = this.keyUp.pipe(
       map(event => event),
-      debounceTime(750),
+      skip(1),
+      debounceTime(1000),
       distinctUntilChanged(),
       mergeMap(search => of(search).pipe(
-        delay(750),
+        delay(500),
       )),
-    ).subscribe(this.searchMerchant);
+    ).subscribe(merchant => {
+      this.searchedMerchants = this.searchMerchant(merchant);
+    });
   }
 
   ngOnInit() {
@@ -40,8 +44,24 @@ export class P2mPaymentGatewayComponent implements OnInit {
     }
   ];
 
+
   searchMerchant(merchantName: String) {
-    console.log(merchantName);
+    let merchants = "STARBUCKS";
+    if(merchants.includes(merchantName.toUpperCase())){
+      return [
+        {
+          merchantName: 'STARBUCKS',
+          category: 'FAST FOOD RESTAURANTS',
+          logo: '/assets/Images/starbucks.png',
+          city: 'SAN FRANCISCO',
+          merchantId: '29992901',
+          address: '3338 N TEXAS ST STE A'
+        }
+      ];
+    }else {
+      return [];
+    }
+
   }
 
   payMerchant(data) {
